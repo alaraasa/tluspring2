@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/lepa")
 public class LetterPairsController {
-    @PostMapping
+    @PostMapping(produces = "application/json")
     String parseString (String text) {
         LetterPairs letterPairs = new LetterPairs();
         letterPairs.setOriginalText(text);

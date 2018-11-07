@@ -1,5 +1,6 @@
 package com.aasa.tluspring.LetterPairs;
 
+import com.google.gson.Gson;
 import lombok.Data;
 import lombok.extern.java.Log;
 
@@ -7,6 +8,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -17,7 +19,7 @@ class LetterPairs {
 
     private String originalText;
     private Map<String, Integer> allPairs = new HashMap<>();
-    private Integer TOP_N_TO_RETURN = 15;
+    private Integer TOP_N_TO_RETURN = 3;
 
     void parseText() {
         String[] splitText = originalText.split("[\\p{Punct}\\s]+");
@@ -59,6 +61,8 @@ class LetterPairs {
                     .append(System.getProperty("line.separator"));
             rank.set(rank.get() + 1);
         });
-        return toReturn.toString();
+
+        Gson gson = new Gson();
+        return gson.toJson(sortedResults);
     }
 }
