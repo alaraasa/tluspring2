@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>H8</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="js/textAnalyzer.js"></script>
 </head>
 <body>
-    <input type="text">
+    <input type="text" id="userText" placeholder="Enter your text" />
+    <button type="submit" id="analyzeText" onclick="doPostRequestWithText()">Analyze</button>
+    <div id="resultBox"></div>
 </body>
 </html>
