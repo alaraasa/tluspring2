@@ -11,8 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
+@Table
 @Data
-public class LetterPair {
+class LetterPair {
     @Id
     @GeneratedValue
     private Long id;

@@ -9,14 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TEXT")
+@Table(name = "Text")
 @Data
 public class Text {
     @Id
     @GeneratedValue
-    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(unique = true, name = "text", length = 8000)
+    @Column(unique = true, length = 8000)
     private String text;
 }
