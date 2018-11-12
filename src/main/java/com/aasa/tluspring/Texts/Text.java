@@ -8,12 +8,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name = "Text")
+@Entity
+@Table(name = "TEXT")
 @Data
 public class Text {
     @Id
     @GeneratedValue
+    @Column(name = "id", nullable = false)
     private Long id;
-    @Column(unique = true, name = "text")
+
+    @Column(unique = true, name = "text", length = 8000)
     private String text;
 }

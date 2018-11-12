@@ -1,21 +1,15 @@
 package com.aasa.tluspring.LetterPairs;
 
-import com.google.gson.Gson;
 import lombok.Data;
-import lombok.extern.java.Log;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Data
-@Log
-class LetterPairs {
+class LetterPairUtils {
 
     private String originalText;
     private Map<String, Integer> allPairs = new HashMap<>();
@@ -23,7 +17,6 @@ class LetterPairs {
 
     void parseText() {
         String[] splitText = originalText.split("[\\p{Punct}\\s]+");
-        log.info(originalText);
         Arrays.stream(splitText).forEach(word -> {
             for(int i=0; i < word.length(); i++) {
                 if (i <  word.length()-1) {
@@ -38,7 +31,7 @@ class LetterPairs {
         });
     }
 
-    private HashMap<String, Integer> sortByValues() {
+    HashMap<String, Integer> sortByValues() {
         return allPairs.entrySet().stream()
                 .sorted((Map.Entry.<String, Integer>comparingByValue().reversed()))
                 .limit(TOP_N_TO_RETURN)
@@ -46,23 +39,11 @@ class LetterPairs {
                         (e1, e2) -> e1, LinkedHashMap::new));
     }
 
-    String getPairs() {
-        StringBuilder toReturn = new StringBuilder();
-        HashMap<String, Integer> sortedResults = sortByValues();
-        AtomicInteger rank = new AtomicInteger(1);
-        sortedResults.forEach((key, value) -> {
-            toReturn
-                    .append(rank.get())
-                    .append(": ")
-                    .append(key)
-                    .append(" (")
-                    .append(value)
-                    .append(")")
-                    .append(System.getProperty("line.separator"));
-            rank.set(rank.get() + 1);
-        });
-
-        Gson gson = new Gson();
-        return gson.toJson(sortedResults);
+    HashMap<String, Integer> getPairs() {
+        return sortByValues();
+//        StringBuilder toReturn = new StringBuilder();
+//        HashMap<String, Integer> sortedResults = sortByValues();
+//        Gson gson = new Gson();
+//        return gson.toJson(sortedResults);
     }
 }
