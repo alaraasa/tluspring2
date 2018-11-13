@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LetterPairService {
@@ -19,8 +20,17 @@ public class LetterPairService {
         this.textService = textService;
     }
 
-    public List<LetterPair> getAll() {
+    private List<LetterPair> getAll() {
         return (List<LetterPair>) letterPairDAO.findAll();
+    }
+
+    public List<LetterPair> getById(Long id) {
+        List<LetterPair> letterPairs = getAll();
+        letterPairs = letterPairs
+                .stream()
+                .filter(letterPair -> letterPair.getText().getId().equals(id))
+                .collect(Collectors.toList());
+        return letterPairs;
     }
 
     public Long addPair(String pair, Integer size, Long textId) {
