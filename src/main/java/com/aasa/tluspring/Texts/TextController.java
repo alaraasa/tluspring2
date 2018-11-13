@@ -17,7 +17,7 @@ public class TextController {
         this.textService = textService;
     }
 
-    @GetMapping
+    @GetMapping(produces = "application/json")
     public String getAllTexts() {
         return gson.toJson(textService.getAllTexts());
     }
