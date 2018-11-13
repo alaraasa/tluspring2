@@ -35,7 +35,7 @@ public class LetterPairsController {
         List<LetterPair> letterPairs = letterPairService.getAll();
         letterPairs = letterPairs
                 .stream()
-                .filter(letterPair -> letterPair.getTextId().equals(id))
+                .filter(letterPair -> letterPair.getText().getId().equals(id))
                 .collect(Collectors.toList());
         return gson.toJson(letterPairs);
     }

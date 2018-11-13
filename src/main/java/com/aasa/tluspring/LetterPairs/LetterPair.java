@@ -1,5 +1,6 @@
 package com.aasa.tluspring.LetterPairs;
 
+import com.aasa.tluspring.Texts.Text;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,8 +20,7 @@ class LetterPair {
     @GeneratedValue
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "id", table="Text")
-    private Long textId;
+    private Text text;
     @Column(name = "pair")
     private String pair;
     @Column(name = "amount")
